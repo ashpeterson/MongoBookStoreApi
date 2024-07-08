@@ -1,6 +1,7 @@
 using BookStoreApi.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using MongoDB.Driver.Core.Configuration;
 
 namespace BookStoreApi.Services;
 
@@ -11,6 +12,9 @@ public class BooksService
     public BooksService(
         IOptions<BookStoreDatabaseSettings> bookStoreDatabaseSettings)
     {
+
+        var connString = bookStoreDatabaseSettings.Value.ConnectionString;
+        /// <value>text</value>
         var mongoClient = new MongoClient(
             bookStoreDatabaseSettings.Value.ConnectionString);
 
